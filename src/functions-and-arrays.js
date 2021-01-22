@@ -212,6 +212,7 @@ const matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+/* This function passes Jasmine's test but it doesn't solve the problem
 function greatestProduct(matrix) {
   counterDifThan1 = 0;
   counterDifThan2 = 0;
@@ -231,3 +232,44 @@ function greatestProduct(matrix) {
       return "ZONK!";
   }
 };
+*/
+
+// This function does solve the problem
+function topHorizontal(matrix) {
+  let topHorizontal = 0;
+  for (let i = 0; i < matrix.length - 1; i++) {
+      for (let j = 0; j < matrix[i].length - 3; j++) {
+          let productHorizontal = matrix[i][j] * matrix[i][j+1] * matrix[i][j+2] * matrix[i][j+3]
+          if (productHorizontal > topHorizontal) {
+              topHorizontal = productHorizontal;
+          }
+      } 
+  } return topHorizontal;
+}
+
+function topVertical(matrix) {
+  let topVertical = 0;
+  for (let i = 0; i < matrix.length - 3; i++) {
+      for (let j = 0; j < matrix[i].length - 3; j++) {
+          let productVertical = matrix[i][j] * matrix[i+1][j] * matrix[i+2][j] * matrix[i+3][j]
+          if (productVertical > topVertical) {
+              topVertical = productVertical;
+          }
+      } 
+  } return topVertical;
+}
+
+function greatestProduct(matrix) {
+  let greatestProduct = 0;
+  let greatestHorizontal = topHorizontal(matrix)
+  let greatestVertical = topVertical(matrix)
+  if (greatestHorizontal > greatestVertical) {
+      greatestProduct = greatestHorizontal;
+  } else {
+      greatestProduct = greatestVertical;
+  } 
+  return greatestProduct
+  console.log(greatestProduct);
+}
+
+greatestProduct(example);
