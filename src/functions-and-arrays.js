@@ -237,7 +237,7 @@ function greatestProduct(matrix) {
 // This function does solve the problem
 function topHorizontal(matrix) {
   let topHorizontal = 0;
-  for (let i = 0; i < matrix.length - 1; i++) {
+  for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length - 3; j++) {
           let productHorizontal = matrix[i][j] * matrix[i][j+1] * matrix[i][j+2] * matrix[i][j+3]
           if (productHorizontal > topHorizontal) {
@@ -250,7 +250,7 @@ function topHorizontal(matrix) {
 function topVertical(matrix) {
   let topVertical = 0;
   for (let i = 0; i < matrix.length - 3; i++) {
-      for (let j = 0; j < matrix[i].length - 3; j++) {
+      for (let j = 0; j < matrix[i].length; j++) {
           let productVertical = matrix[i][j] * matrix[i+1][j] * matrix[i+2][j] * matrix[i+3][j]
           if (productVertical > topVertical) {
               topVertical = productVertical;
@@ -272,4 +272,3 @@ function greatestProduct(matrix) {
   console.log(greatestProduct);
 }
 
-greatestProduct(example);
